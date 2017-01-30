@@ -27,7 +27,7 @@ At test time, you will encounter words that were not present in the training set
 
 
 #### Labels
-Each document should be labeled with label from the set: \{Too, oEo, ooD, TEo, ToD, oED, TED, ooo\}. You are called to generate labels from the \<keywords\> tag by checking the existance of one of the following tags: {Technology, Entertainment, Design}.
+Each document should be labeled with label from the set: \{Too, oEo, ooD, TEo, ToD, oED, TED, ooo\}. You are called to generate labels from the \<keywords\> tag by checking the existence of one of the following tags: {Technology, Entertainment, Design}.
 
 - None of the keywords → ooo
 - “Technology” → Too
