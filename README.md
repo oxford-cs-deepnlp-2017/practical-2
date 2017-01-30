@@ -1,5 +1,5 @@
 # Practical 2: Text Classification
-[Chris Dyer, Yannis Assael]
+[Chris Dyer, Yannis Assael, Brendan Shillingford]
 
 TED stands for “Technology, Entertainment, and Design”. Each talk in the corpus is labeled with a series of open labels by annotators, including the labels “technology”, “entertainment”, and “design”. Although some talks are about more than one of these, and about half aren’t labeled as being about any of them! In this assignment, you will build a text classification model that predicts whether a talk is about technology, entertainment, or design--or none of these.
 
@@ -27,13 +27,16 @@ At test time, you will encounter words that were not present in the training set
 
 
 #### Labels
-Each document should be labeled with a label from the set: {Too, oEo, ooD, TEo, ToD, oED, TED, ooo}.
+Each document should be labeled with label from the set: \{Too, oEo, ooD, TEo, ToD, oED, TED, ooo\}. You are called to generate labels from the \<keywords\> tag by checking the existance of one of the following tags: {Technology, Entertainment, Design}.
 
+- None of the keywords → ooo
 - “Technology” → Too
 - “Entertainment” → oEo
 - “Design” → ooD
 - “Technology” and “Entertainment” → TEo
 - “Technology” and “Design” → ToD
+- “Entertainment” and “Design” → oED
+- “Technology” and “Entertainment” and “Design” → TED
 
 ### Model
 
@@ -61,6 +64,8 @@ Word embeddings can be learned as parameters in the model (either starting from 
 
 ## Questions
 
+You are called to build a single-layer feed-forward neural network in your favourite framework. The network should treat the labels as 8 independent classes. We suggest Adam as optimiser, and training should place in batches for increased stability (e.g.~50).
+
 1. Compare the learning curves of the model starting from random embeddings, starting from GloVe embeddings ([http://nlp.stanford.edu/data/glove.6B.zip](http://nlp.stanford.edu/data/glove.6B.zip); 50 dimensions) or fixed to be the GloVe values. Training in batches is more stable (e.g. 50), which model works best on training vs. test? Which model works best on held-out accuracy?
 1. What happens if you try alternative non-linearities (logistic sigmoid or ReLU instead of tanh)?
 1. What happens if you add dropout to the network?
@@ -71,10 +76,10 @@ Word embeddings can be learned as parameters in the model (either starting from 
 
 
 #### (Optional, for enthusiastic students) 
-<ol start="8">
-<li>Try the same prediction task using a true multi-label classification (MLC) set up. Although a very simple approach is to make a bunch of binary classification decisions (one for each label), MLC is an interesting problem in its own right (the name of the game is modeling label decisions jointly, exploiting correlation structure between them), and neural networks offer some really interesting possibilities for modeling MLC problems that have yet to be adequately explored in the literature.</li>
-</ol>
+Try the same prediction task using a true multi-label classification (MLC) set up.
 
+1. One common approach is to make a bunch of binary classification decisions (one for each label).
+1. Note, however, that separate binary classification problems don't model correlation structure. It may be the case that, for sake of argument, the label sequence "ooD" never occurs in the data, but we do not know that aprior when designing the model. MLC is an interesting problem in its own right (the name of the game is modeling label decisions jointly, exploiting correlation structure between them), and neural networks offer some really interesting possibilities for modeling MLC problems that have yet to be adequately explored in the literature. You may want to try adding a CRF at the output, for example.
 
 #### Handin
 On paper, show a practical demonstrator your response to these to get signed off.
