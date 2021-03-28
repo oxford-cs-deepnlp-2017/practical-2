@@ -18,7 +18,7 @@ Other suggested frameworks: [CNTK](https://github.com/Microsoft/CNTK), [Torch](h
 ## Multi-class classification
 
 ### Data preparation
-You should reserve the first 1585 documents of the [TED talks dataset](https://wit3.fbk.eu/mono.php?release=XML_releases&tinfo=cleanedhtml_ted) for training, the subsequent 250 for validation, and the final 250 for testing. Each document will be represented as a pairs of (text, label).
+You should reserve the first 1585 documents of the [TED talks dataset](https://github.com/oxford-cs-deepnlp-2017/practical-1/blob/master/ted_en-20160408.xml) for training, the subsequent 250 for validation, and the final 250 for testing. Each document will be represented as a pairs of (text, label).
 
 #### Text of talks
 Using the training data, you should determine what vocabulary you want for your model. A good rule of thumb is to tokenise and lowercase the text (you did this in the intro practical).
